@@ -1,15 +1,34 @@
-import React from 'react'
 import Footer from './Footer'
 import Product from './Product'
 import SigninRedirect from './SigninRedirect'
+import bannerImg1 from '../assets/bannerImg1.jpg'
+import bannerImg2 from '../assets/bannerImg2.jpg'
+import bannerImg3 from '../assets/bannerImg3.jpg'
+import bannerImg4 from '../assets/bannerImg4.jpg'
 
 const Home = () => {
+
   return (
     <>
     
     <div className='home max-w-[1500px] m-auto'>
-          <img className='homeimg w-[100%] -z-10 mb-[-80px] lg:mb-[-300px] bg-gradient-to-b from-gray-800 to-gray-100' src='https://m.media-amazon.com/images/I/71GoSeO4zpL._SX3000_.jpg' alt='slider-img'/>
 
+      {/* Slider */}
+      <div className='slider w-[100%] h-auto relative'>
+        <div className='flex'>
+          <img className='homeimg w-[100%] -z-10 mb-[-80px] lg:mb-[-300px] bg-gradient-to-b from-gray-800 to-gray-100' src={bannerImg1} alt='slider-img'/>
+          <img className='homeimg w-[100%] -z-10 mb-[-80px] lg:mb-[-300px] bg-gradient-to-b from-gray-800 to-gray-100' src={bannerImg2} alt='slider-img'/>
+          <img className='homeimg w-[100%] -z-10 mb-[-80px] lg:mb-[-300px] bg-gradient-to-b from-gray-800 to-gray-100' src={bannerImg3} alt='slider-img'/>
+          <img className='homeimg w-[100%] -z-10 mb-[-80px] lg:mb-[-300px] bg-gradient-to-b from-gray-800 to-gray-100' src={bannerImg4} alt='slider-img'/>
+        </div>
+
+        <div className='slider__btns flex justify-between px-4 absolute top-[20%] w-full md:text-4xl text-black'>
+          <span className='bg-slate-50 bg-opacity-30 px-1 py-2 md:py-3 rounded-md cursor-pointer'><i class="fa-solid fa-chevron-left"></i></span>
+          <span className='bg-slate-50 bg-opacity-30 px-1 py-2 md:py-3 rounded-md cursor-pointer'><i class="fa-solid fa-chevron-right"></i></span>
+        </div>
+      </div>
+
+      {/* Product Rows */}
       <div className='home__container flex flex-col items-center'>
       
           <div className='home__row1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1'>
@@ -81,8 +100,8 @@ const Home = () => {
             id="12346511"/>
           </div>
 
-
       </div>
+      
     </div>
 
       {/* Signin Redirect component */}

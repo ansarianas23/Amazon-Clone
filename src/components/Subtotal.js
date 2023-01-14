@@ -1,7 +1,5 @@
 import React from 'react'
-import CurrencyFormat from 'react-currency-format'
 import { useNavigate } from 'react-router-dom';
-import { getCartTotal } from '../context/reducer';
 import { useStateValue } from '../context/StateProvider';
 
 const Subtotal = () => {
@@ -18,7 +16,7 @@ const Subtotal = () => {
 
         <p className='text-lg font-normal'>
           <span>Subtotal ({cart?.length} items): </span>
-          <strong><span className='text-sm font-bold'>₹</span>{result}</strong>
+          <strong><span className='text-sm font-bold'>₹</span>{result}.00</strong>
         </p>
         <small className='flex items-center'>
           <input className='mr-1' type="checkbox"/>This order contains gift

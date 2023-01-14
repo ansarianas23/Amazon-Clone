@@ -8,7 +8,7 @@ import { auth } from '../firebase'
 
 const Header = () => {
   const [{ cart, user }, dispatch] = useStateValue();
-  console.log('User from Redux/Context Store is' ,user);
+  // console.log('User from Redux/Context Store is' ,user);
   // console.log(cart);
 
 
@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <>
-    <div className='header sticky top-0 z-[40] flex bg-[#131921] h-[60px] w-[100%] items-center justify-center text-white pl-6 pr-6 space-x-6 md:space-x-5'>
+    <div className='header  top-0 z-[40] flex bg-[#131921] h-[60px] w-[100%] items-center text-white px-5 md:space-x-6'>
       <Link to={'/'}>
         <div className='flex- amazone-logo flex border border-transparent hover:border-white px-1 md:p-2'>
           <img className='w-28 md:h-7' src={amazonLogo} alt="amazon_logo"/>
@@ -39,7 +39,8 @@ const Header = () => {
         </div>
       </div>
 
-      <div className='search__input text-black rounded-md overflow-hidden max-w-[59vw] flex items-center'>
+      {/* Middle Search Bar */}
+      <div className='search__input text-black rounded-md overflow-hidden max-w-[59vw] flex items-center invisible md:visible'>
         <select className='select__input w-8 md:w-12 h-10 text-sm pl-1 bg-gray-200 hover:bg-gray-300 cursor-pointer'>
           <option>All</option>
           <option>Alexa Skills</option>
@@ -61,30 +62,62 @@ const Header = () => {
 
       <Link to={!user && '/login'}>
         <div onClick={signOut} className='header__accounts md:flex flex-col border border-transparent hover:border-white cursor-pointer px-2 py-1'>
-          <span className='md:hidden flex flex-col text-xs text-center text-white'><i className="fa-regular fa-user"></i>Sign in</span>
+          
+          <div className='md:hidden flex flex-col justify-center items-center text-center text-white'>
+            <span className='text-xm'><i className="fa-regular fa-user"></i></span>
+            <span className='text-xs w-14'>{user? "Sign Out": "Sign in"}</span>
+          </div>
+
           <div className='hidden md:inline-block accounts__upper text-xs'>
             <span>Hello, </span>
             <span>{user? "Sign Out": "Sign In"}</span>
           </div>
-          <span className='hidden md:inline accounts__lower font-bold text-sm'>Account & Lists</span>
+
+          <span className='hidden md:inline accounts__lower font-bold text-sm'>Account</span>
         </div>
       </Link>
       
       <div className='header__orders md:flex flex-col border border-transparent hover:border-white cursor-pointer px-2 py-1 hidden'>
-      <span className='orsers__upper text-xs'>Returns</span>
+        <span className='orsers__upper text-xs'>Returns</span>
         <span className='orsers__lower font-bold text-sm'>& Orders</span>
       </div>
 
       <Link to='checkout'>
-        <div className='header__cart border border-transparent hover:border-white cursor-pointer px-2 py-2 flex space-x-1'>
-          <div className='relative'>
-            <span className='cart__upper'><img className='w-12' src={cartLogo} alt="cart-logo"/></span>
-            <span className="text-md text-center absolute text-[#f08804] left-[22px] -top-3 font-bold">{cart?.length}</span>
+        <div className='header__cart border border-transparent hover:border-white cursor-pointer px-2 py-2 flex flex-col space-x-1'>
+          <div className='space-x-1 flex'>
+            {/* <span className='cart__upper'><img className='w-12' src={cartLogo} alt="cart-logo"/></span> */}
+            <span className='cart__upper'><i class="fa-solid fa-cart-shopping"></i></span>
+            <span className="text-md text-[#f08804] font-bold">{cart?.length}</span>
           </div>
           <span className='cart__lower font-bold text-sm hidden md:inline'>Cart</span>
         </div>
       </Link>
     </div>
+
+    <div className='mobile__seacrh__bar md:hidden bg-[#131921] w-full p-5 flex justify-center items-center'>
+      <div className='flex justify-center items-center rounded-md overflow-hidden w-full'>
+        <select className='select__input w-8 md:w-12 h-10 text-sm pl-1 bg-gray-200 hover:bg-gray-300 cursor-pointer'>
+            <option>All</option>
+            <option>Alexa Skills</option>
+            <option>Amazon Devices</option>
+            <option>Amazon Fashion</option>
+            <option>Amazon Fresh</option>
+            <option>Amazon Phrmacy</option>
+            <option>Appliances</option>
+            <option>Apps and Games</option>
+        </select>
+          <input type='text' className='serach__bar h-10 pl-2 w-[100%] min-w-[4rem]'></input>
+          <span className='search__icon bg-[#febd69] hover:bg-[#f1a845] px-3 py-2 cursor-pointer'><i className="fa-solid fa-magnifying-glass"></i></span>
+      </div>
+    </div>
+
+    
+
+
+
+    
+
+
     </>
   )
 }

@@ -21,7 +21,7 @@ function App() {
   // run only once when the app component loads
   useEffect(()=>{
     auth.onAuthStateChanged(authUser =>{
-      console.log("USER FROM FIREBASE >>>", authUser);
+      // console.log("USER FROM FIREBASE >>>", authUser);
       if(authUser){
         // The user is just logged in / the user was loggged in
         dispatch({

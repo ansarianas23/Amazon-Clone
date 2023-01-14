@@ -3,11 +3,6 @@ export const initialState = {
     user: null
 };
 
-// Selector
-export const getCartTotal = (cart)=>{
-    cart?.reduce((amount, item) => item.price + amount, 0);
-}
-
 
 // reducer used to dispacth data into data layer whenever we click add to cart reducer always listening an action
 const reducer = (state, action)=>{
@@ -45,7 +40,7 @@ const reducer = (state, action)=>{
                 cart: newCart 
             }
 
-        case "SET__USER":
+        case "SET_USER":
             return {
                 ...state,
                 user: action.user
