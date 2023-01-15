@@ -9,7 +9,7 @@ const Subtotal = () => {
   let result = cart?.reduce((tot, item)=>{
     return tot + item.price
   },0)
-  console.log(result);
+  // console.log(result);
   
   return (  
     <div className='subtotal flex flex-col justify-between bg-white w-[300px] h-[150px] p-5 rounded-md'>

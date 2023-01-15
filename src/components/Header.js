@@ -85,8 +85,7 @@ const Header = () => {
       <Link to='checkout'>
         <div className='header__cart border border-transparent hover:border-white cursor-pointer px-2 py-2 flex flex-col space-x-1'>
           <div className='space-x-1 flex'>
-            {/* <span className='cart__upper'><img className='w-12' src={cartLogo} alt="cart-logo"/></span> */}
-            <span className='cart__upper'><i class="fa-solid fa-cart-shopping"></i></span>
+            <span className='cart__upper'><i className="fa-solid fa-cart-shopping"></i></span>
             <span className="text-md text-[#f08804] font-bold">{cart?.length}</span>
           </div>
           <span className='cart__lower font-bold text-sm hidden md:inline'>Cart</span>
@@ -110,13 +109,6 @@ const Header = () => {
           <span className='search__icon bg-[#febd69] hover:bg-[#f1a845] px-3 py-2 cursor-pointer'><i className="fa-solid fa-magnifying-glass"></i></span>
       </div>
     </div>
-
-    
-
-
-
-    
-
 
     </>
   )

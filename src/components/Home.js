@@ -5,8 +5,12 @@ import bannerImg1 from '../assets/bannerImg1.jpg'
 import bannerImg2 from '../assets/bannerImg2.jpg'
 import bannerImg3 from '../assets/bannerImg3.jpg'
 import bannerImg4 from '../assets/bannerImg4.jpg'
+import { useEffect, useState } from 'react'
 
 const Home = () => {
+
+  const  [allImages, setAllimages] = useState([bannerImg1, bannerImg2, bannerImg3, bannerImg4])
+  const [selectedImage, setSelectedImage] = useState(0);
 
   return (
     <>
@@ -15,16 +19,19 @@ const Home = () => {
 
       {/* Slider */}
       <div className='slider w-[100%] h-auto relative'>
-        <div className='flex'>
-          <img className='homeimg w-[100%] -z-10 mb-[-80px] lg:mb-[-300px] bg-gradient-to-b from-gray-800 to-gray-100' src={bannerImg1} alt='slider-img'/>
-          <img className='homeimg w-[100%] -z-10 mb-[-80px] lg:mb-[-300px] bg-gradient-to-b from-gray-800 to-gray-100' src={bannerImg2} alt='slider-img'/>
-          <img className='homeimg w-[100%] -z-10 mb-[-80px] lg:mb-[-300px] bg-gradient-to-b from-gray-800 to-gray-100' src={bannerImg3} alt='slider-img'/>
-          <img className='homeimg w-[100%] -z-10 mb-[-80px] lg:mb-[-300px] bg-gradient-to-b from-gray-800 to-gray-100' src={bannerImg4} alt='slider-img'/>
+        <div className='slide flex transition all ease-in-out duration-500'>
+          <img className='homeimg w-[100%] -z-10 mb-[-80px] lg:mb-[-300px] bg-gradient-to-b from-gray-800 to-gray-100' src={allImages[selectedImage]} alt='slider-img'/>
         </div>
 
         <div className='slider__btns flex justify-between px-4 absolute top-[20%] w-full md:text-4xl text-black'>
-          <span className='bg-slate-50 bg-opacity-30 px-1 py-2 md:py-3 rounded-md cursor-pointer'><i class="fa-solid fa-chevron-left"></i></span>
-          <span className='bg-slate-50 bg-opacity-30 px-1 py-2 md:py-3 rounded-md cursor-pointer'><i class="fa-solid fa-chevron-right"></i></span>
+          <span onClick={()=>{
+            if(selectedImage > 0)
+            setSelectedImage(selectedImage - 1)
+          }} className='bg-slate-50 bg-opacity-30 px-1 py-2 md:py-3 rounded-md cursor-pointer'><i class="fa-solid fa-chevron-left"></i></span>
+          <span onClick={()=>{
+            if(selectedImage < allImages.length -1)
+            setSelectedImage(selectedImage + 1)
+          }} className='bg-slate-50 bg-opacity-30 px-1 py-2 md:py-3 rounded-md cursor-pointer'><i class="fa-solid fa-chevron-right"></i></span>
         </div>
       </div>
 

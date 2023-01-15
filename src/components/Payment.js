@@ -1,13 +1,24 @@
-import React from 'react'
+import { CardElement } from '@stripe/react-stripe-js';
+import React, { useState } from 'react'
 import { useStateValue } from '../context/StateProvider';
 import CheckoutProduct from './CheckoutProduct';
 // import {CardElements, useStripe, useElements } from "@stripe/react-stripe-js";
 
 const Payment = () => {
     const [{ cart, user }, dispatch] = useStateValue();
+    const [succeeded, setSucceeded] = useState(false);
+    const [processing, setProcessing] = useState("");
+    const [error, setError] = useState(null);
+    const [disabled, setDisabled] = useState(true);
+    const [clientSecret, setClientSecret] = useState(true);
 
     // const stripe = useStripe();
     // const elements = useElements(); 
+
+    // function to calculate order total
+    let result = cart?.reduce((tot, item)=>{
+        return tot + item.price
+      },0)
 
 
     const handleSubmit = ()=>{
@@ -59,10 +70,19 @@ const Payment = () => {
             <div>
                 <h3 className='font-bold text-lg mr-28'>Payment Method</h3>
             </div>
-            <div className='flex flex-col'> 
+            <div className='flex flex-col space-y-4'> 
                 <span className='font-bold'>Card Details</span>
-                <form onSubmit={handleSubmit}>
-                    {/* <CardElements/> */}
+                <form className='space-y-4' onSubmit={handleSubmit}>
+                    <div className='w-96'>
+                        <CardElement/>
+                    </div>
+                    <div className='payment__priceConatiner'>
+                        <h3 className='font-semibold'>Order Total : {result}</h3>
+                    </div>
+                    {/* <button disabled={processing || disabled || succeeded}>
+                        <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                    </button> */}
+                    <button className='bg-[#ffd814] hover:bg-[#f7ca00] px-3 py-1 rounded-lg w-[100%]'>Buy Now</button>
                 </form>
             </div>
         </div>

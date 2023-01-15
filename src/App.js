@@ -1,3 +1,4 @@
+import { Elements } from '@stripe/react-stripe-js';
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -9,10 +10,10 @@ import Login from './components/Login';
 import Payment from './components/Payment';
 import { useStateValue } from './context/StateProvider';
 import { auth } from './firebase';
-// import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 // Stripe API Key
-// const promise = loadStripe('your stripe api key here')
+const promise = loadStripe('your stripe api key here')
 
 function App() {
 
@@ -47,7 +48,7 @@ function App() {
           <Route exact path='/' element={<><Header/> <HeaderNav/> <Home/></>}/>
           <Route exact path='login' element={<Login/>}/>
           <Route exact path='checkout' element={<><Header/> <HeaderNav/> <Checkout/></>}/>
-          <Route exact path='payment' element={<><Header/> <Payment/></>}/>
+          <Route exact path='payment' element={<><Header/> <Elements stripe={promise}><Payment/></Elements></>}/>
         </Routes>
       </BrowserRouter>
     </div>
